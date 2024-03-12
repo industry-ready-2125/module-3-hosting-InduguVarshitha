@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Document Authenticator</title>
+  <!-- Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-image: url('C:\Users\HP\Pictures\au.jpg');
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      margin: 0; /* Remove default margin */
+    }
+
+    /* Styling the Navigation Bar */
+    header {
+      background-color: #343a40; /* Dark Gray */
+      color: #fff;
+      padding: 10px 0;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+    }
+
+    .navbar-toggler-icon {
+      background-color: #fff;
+    }
+
+    .nav-link {
+      color: #fff;
+    }
+
+    /* Styling the Main Section */
+    .container {
+      text-align: center;
+      padding: 50px 0;
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+      border-radius: 10px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.5rem;
+      color: #555;
+    }
+
+    #authenticator-form {
+      max-width: 500px;
+      margin: 30px auto;
+    }
+
+    label {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .form-control {
+      padding: 15px;
+    }
+
+    .btn-primary {
+      background-color: #007bff; /* Blue */
+      border-color: #007bff;
+    }
+
+    /* Styling the Result Box */
+    #verification-result {
+      margin-top: 30px;
+      font-size: 1.4rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">DocAuthenticator</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="file:///C:/myapp/homee.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="file:///C:/myapp/login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="file:///C:/myapp/register.html">Registration</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  
+  <section class="container mt-5">
+    <h1>Welcome to DocAuthenticator</h1>
+    <p>Verify the authenticity of your documents online.</p>
+    <form id="authenticator-form">
+      <div class="form-group">
+        <label for="document">Upload Document:</label>
+        <input type="file" class="form-control" id="document" accept=".pdf, .doc, .docx">
+      </div>
+      <button type="submit" class="btn btn-primary">Verify</button>
+    </form>
+    <div id="verification-result" class="mt-3"></div>
+  </section>
+  
+   <!-- Bootstrap JS and jQuery scripts -->
+<script>
+// Preprocessing function
+function preprocessDocument(document) {
+  // Send document to the back end
+  fetch('/preprocess', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ document })
+  })
+  .then(response => response.json())
+  .then(preprocessedDocument => {
+    // Do something with the preprocessed document
+    console.log(preprocessedDocument);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+// Call the preprocessing function
+preprocessDocument("Your document data goes here");
+
+</script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src=""C:\Users\ivars\OneDrive\Desktop\mini\preprocess.js""></script>
+  <!-- Custom JavaScript -->
+
+  <script src="script.js"></script>
+</body>
+</html>
